@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "name": "TODO-APP-API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ShiellynFerr/TODO-APP-API.git",
+  "author": "ShiellynFerr <brunashiellyn@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
