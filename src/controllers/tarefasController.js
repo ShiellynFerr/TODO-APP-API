@@ -1,11 +1,17 @@
+import Tarefas from "../models/tarefasModels.js";
+import { bdTarefas } from "../infra/bd.js";
 
-export const tarefas = (server) => {
-  server.get('/tarefas', (req, res) => {
-  res.send('<h1>Rota ativa com Get e recurso tarefas valores de tarefas devem ser retornados </h1>')
-})}
+const tarefas = (server) => {
+  server.get("/tarefas", (req, res) => {
+    res.send(bdTarefas);
+  });
+  server.post("/tarefas", (req, res) => {
+    const { titulo, descricao, status, dataDeCriacao } = req.body;
 
-export const tarefasPost = (server) => {
-  server.post('/tarefas', (req, res) => {
-    res.send('<h2>Rota POST tarefa ativada: tarefa adicionado ao banco de dados</h2>')
-  })
-}
+    const dataM = new Tarefas(titulo, descricao, status, dataDeCriacao);
+    bdTarefas.push(dataM);
+    res.send(bdTarefas);
+  });
+};
+
+export default tarefas;
