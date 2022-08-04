@@ -3,7 +3,7 @@ const server = express();
 server.use(express.json());
 
 import tarefas from "./controllers/tarefasController.js";
-import { usuario } from "./controllers/usuarioController.js";
+import usuario  from "./controllers/usuarioController.js";
 
 usuario(server);
 tarefas(server);

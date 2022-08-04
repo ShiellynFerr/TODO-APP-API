@@ -12,6 +12,18 @@ const tarefas = (server) => {
     bdTarefas.push(dataM);
     res.send(bdTarefas);
   });
+
+  server.get("/tarefas/:id", (req, res) => {
+    const tarefaBd = bdTarefas.filter((element) => element.id === +req.params.id)
+    res.send(tarefaBd)
+  })
+
+  server.delete("/tarefas/:id", (req, res) => {
+        const tarefa = bdTarefas.find(task => task.id === req.params.id);
+        const index = bdTarefas.indexOf(tarefa);
+        bdTarefas.splice(index,1)
+        res.send(bdTarefas)
+  })
 };
 
 export default tarefas;

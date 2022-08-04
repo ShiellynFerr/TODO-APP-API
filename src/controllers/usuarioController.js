@@ -1,13 +1,19 @@
-export const usuario = (server) => {
-  server.get("/usuario", (req, res) => {
-    res.send(
-      "<h1>Rota ativa com Get e recurso usuário valores de usuário devem ser retornados </h1>"
-    );
+import usuarioM from "../models/usuarioModels.js";
+import { bdUsuarios } from "../infra/bd.js";
 
-    server.post("/usuario", (req, res) => {
-      res.send(
-        "<h2>Rota POST usuario ativada: usuario adicionado ao banco de dados</h2>"
-      );
-    });
+const usuario = (server) => {
+  server.get("/usuario", (req, res) => {
+    res.send(bdUsuarios);
   });
+    server.post("/usuario", (req, res) => {
+      const {nome, email, senha} = req.body;
+
+      const dataM = new usuarioM(nome, email, senha)
+      bdUsuarios.push(dataM);
+      res.send(bdUsuarios)
+    });
+
+    server.get("/usuario/")
 };
+
+export default usuario

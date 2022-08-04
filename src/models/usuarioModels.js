@@ -1,10 +1,12 @@
-class usuario {
+import { bdUsuarios } from "../infra/bd.js";
+
+class usuarioM {
   constructor(nome, email, senha) {
-    this.id = 1;
+    this.id = bdUsuarios.length + 1;
     this.nome = nome;
     this.email = email;
     this.senha = senha;
   }
 }
 
-export default usuario;
+export default usuarioM;
