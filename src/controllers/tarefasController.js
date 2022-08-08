@@ -16,20 +16,21 @@ const tarefas = (server) => {
   server.get("/tarefas/:id", (req, res) => {
     const tarefaBd = bdTarefas.filter((element) => element.id === +req.params.id)
     res.send(tarefaBd)
-  })
-
-  server.put("/tarfeas/:id", (req, res) => {
-    const tarefaBd = bdTarefas.filter((element) => element.id === +req.params.id)
-    tarefaBd.status = req.body.status;
-    res.send(`Registro de ${tarefaBd.status} atualizado`);
-  })
+  });
 
   server.delete("/tarefas/:id", (req, res) => {
-        const tarefa = bdTarefas.find(task => task.id === req.params.id);
-        const index = bdTarefas.indexOf(tarefa);
-        bdTarefas.splice(index,1)
-        res.send(bdTarefas)
-  })
+    const tarefa = bdTarefas.find(task => task.id === req.params.id);
+    const index = bdTarefas.indexOf(tarefa);
+    bdTarefas.splice(index,1)
+    res.send(bdTarefas)
+});
+
+  server.put("/tarefas/:id", (req, res) => {
+    const tarefaBd = bdTarefas.find(element => element.id === +req.params.id)
+    tarefaBd.status = req.body.status;
+    res.send(bdTarefas);
+  });
+
 };
 
 export default tarefas;
