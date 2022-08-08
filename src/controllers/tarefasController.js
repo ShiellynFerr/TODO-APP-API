@@ -18,6 +18,12 @@ const tarefas = (server) => {
     res.send(tarefaBd)
   })
 
+  server.put("/tarfeas/:id", (req, res) => {
+    const tarefaBd = bdTarefas.filter((element) => element.id === +req.params.id)
+    tarefaBd.status = req.body.status;
+    res.send(`Registro de ${tarefaBd.status} atualizado`);
+  })
+
   server.delete("/tarefas/:id", (req, res) => {
         const tarefa = bdTarefas.find(task => task.id === req.params.id);
         const index = bdTarefas.indexOf(tarefa);
